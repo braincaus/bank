@@ -1,0 +1,363 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /api/accounts/:
+    get:
+      operationId: listAccounts
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createAccount
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Account'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Account'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+          description: ''
+      tags:
+      - api
+  /api/accounts/{account_number}/:
+    get:
+      operationId: retrieveAccount
+      description: ''
+      parameters:
+      - name: account_number
+        in: path
+        required: true
+        description: A UUID string identifying this account.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateAccount
+      description: ''
+      parameters:
+      - name: account_number
+        in: path
+        required: true
+        description: A UUID string identifying this account.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Account'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Account'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateAccount
+      description: ''
+      parameters:
+      - name: account_number
+        in: path
+        required: true
+        description: A UUID string identifying this account.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Account'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Account'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyAccount
+      description: ''
+      parameters:
+      - name: account_number
+        in: path
+        required: true
+        description: A UUID string identifying this account.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/accounts/{account_number}/transactions/:
+    get:
+      operationId: getTransactionsAccount
+      description: ''
+      parameters:
+      - name: account_number
+        in: path
+        required: true
+        description: A UUID string identifying this account.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+          description: ''
+      tags:
+      - api
+  /api/transactions/:
+    get:
+      operationId: listTransactions
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createTransaction
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+          description: ''
+      tags:
+      - api
+  /api/transactions/{transaction_id}/:
+    get:
+      operationId: retrieveTransaction
+      description: ''
+      parameters:
+      - name: transaction_id
+        in: path
+        required: true
+        description: A UUID string identifying this transaction.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateTransaction
+      description: ''
+      parameters:
+      - name: transaction_id
+        in: path
+        required: true
+        description: A UUID string identifying this transaction.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateTransaction
+      description: ''
+      parameters:
+      - name: transaction_id
+        in: path
+        required: true
+        description: A UUID string identifying this transaction.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyTransaction
+      description: ''
+      parameters:
+      - name: transaction_id
+        in: path
+        required: true
+        description: A UUID string identifying this transaction.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        account_number:
+          type: string
+          format: uuid
+        initial_deposit:
+          type: object
+          properties:
+            amount:
+              type: number
+              minimum: 0
+          required:
+          - amount
+          writeOnly: true
+        account_type:
+          enum:
+          - savings
+          - checking
+          type: string
+        customer_name:
+          type: string
+          maxLength: 250
+        balance:
+          type: number
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - initial_deposit
+      - account_type
+      - customer_name
+    Transaction:
+      type: object
+      properties:
+        transaction_id:
+          type: string
+          format: uuid
+        transaction_type:
+          enum:
+          - deposit
+          - withdraw
+          type: string
+        amount:
+          type: number
+          minimum: 0
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        account:
+          type: string
+      required:
+      - transaction_type
+      - amount
+      - account
