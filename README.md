@@ -1,14 +1,29 @@
 # Bank
 
-This project was build as part of a Code Challenge.
+This project was build as part of a Code Challenge, with some small changes to make the exercise more similar to what 
+really happens. For which "Celery" was added for queue management.
 
 In order to run it locally is important you have installed Python and Virtualenv or Similar to create python's 
 virtual envs.
+
+A `.env` file must be created with:
+
+    SECRET_KEY='django-insecure-&nt1^sx(=$*o=n&ml#ke--8b4x19n^_2u437(s_*fc3&xcuss2'
+    DEBUG=True
+    RABBITMQ_HOST=localhost
+    RABBITMQ_USER=bank
+    RABBITMQ_PASSWORD=bank
+    RABBITMQ_VHOST=bank
 
 Once you are sure of the above, run on your terminal:
 
     python manage.py migrate
     python manage.py runserver
+
+In order to run the worker locally, a docker-compose with a RabbitMQ service.
+
+    docker-compose up -d                                 # To up service
+    celery -A bank.celery worker --loglevel=info         # To up worker
 
 After that, you can open your browser on [http://localhost:8000/api/](http://localhost:8000/api/).
 

@@ -5,6 +5,7 @@ from rest_framework.response import Response
 
 from api.serializers import AccountSerializer, TransactionSerializer
 from core.models import Account, Transaction
+from core.tasks import apply_transaction
 
 
 # Create your views here.
@@ -36,5 +37,13 @@ class TransactionViewSet(viewsets.ModelViewSet):
     serializer_class = TransactionSerializer
     permission_classes = [permissions.AllowAny]
 
+    def perform_create(self, serializer):
+        return serializer.save()
+
     def create(self, request, *args, **kwargs):
-        return super(TransactionViewSet, self).create(request=request)
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        obj = self.perform_create(serializer)
+        apply_transaction.delay(obj.transaction_id)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)

@@ -14,30 +14,13 @@ class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction
         fields = '__all__'
-
-    def create(self, validated_data):
-        if validated_data['transaction_type'] == 'withdraw':
-            account = validated_data['account']
-            if account.balance < validated_data['amount']:
-                raise WithoutFoundsException
-        result = super(TransactionSerializer, self).create(validated_data=validated_data)
-        if result.transaction_type == 'deposit':
-            result.account.balance += result.amount
-        elif result.transaction_type == 'withdraw':
-            result.account.balance -= result.amount
-        result.account.save()
-        return result
+        read_only_fields = ['status', 'error', ]
 
 
 class TransactionCreateAccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction
         fields = ['amount']
-
-    def create(self, validated_data):
-        result = super(TransactionCreateAccountSerializer, self).create(validated_data=validated_data)
-
-        return result
 
 
 class AccountSerializer(serializers.ModelSerializer):
@@ -52,5 +35,5 @@ class AccountSerializer(serializers.ModelSerializer):
         transaction = validated_data.pop('initial_deposit')
         validated_data['balance'] = transaction.get('amount')
         result = super(AccountSerializer, self).create(validated_data=validated_data)
-        result.transaction_set.create(transaction_type='deposit', amount=transaction.get('amount'))
+        result.transaction_set.create(transaction_type_id=1, status_id=2, amount=transaction.get('amount'))
         return result
